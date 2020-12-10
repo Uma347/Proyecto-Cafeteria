@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Menú</title>
+        <link rel="stylesheet" href="/static/css/estilo.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
+    </head>
+<body>
+    <header class="encavd">
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/fichas">Fichas</a>
+            <a href="/login">Ingresar</a>
+            
+        </nav>
+       
+    </header>
+    <main>
+        <section class="contenedor sobre-nosotros">
+            <h2 class="titulo">MENÚ</h2>
+            <div class="contenedor-sobre-nosotros">
+                <div class="contenido-textos">
+                    <h3>1. Comida Rápida</h3> 
+                    <table >
+                        {% for c in comida %}
+                        <tr>
+                            <td><p>{{ c.0}} </p></td>
+                            <td><p>{{ c.1}} Bs </p></td>
+                        </tr>
+                        {% endfor %}
+                    </table>  
+                    <h3>2. Bebidas</h3>
+                    <table >
+                        {% for c in bebida %}
+                        <tr>
+                            <td><p>{{ c.0}} </p></td>
+                            <td><p>{{ c.1}} Bs </p></td>
+                        </tr>
+                        {% endfor %}
+                    </table>  
+                    <h3>3. Postres</h3>
+                    <table >
+                        {% for c in postre %}
+                        <tr>
+                            <td><p>{{ c.0}} </p></td>
+                            <td><p>{{ c.1}} Bs </p></td>
+                        </tr>
+                        {% endfor %}
+                    </table>  
+
+                </div>
+                <div class="contenido-textos">
+                <img src="/static/img/comida4.png" alt=""> 
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <h4>Dirección</h4>
+                <p>Av. Villazón Nro 1995 - Monoblock Central - Segundo Patio - Edif. Carrera de Informática - Piso 6</p>
+            </div>
+        </div>
+        <h2 class="titulo-final">&copy; Carrera de Informática | UMSA</h2>
+    </footer>
+</body>
+
+</html>

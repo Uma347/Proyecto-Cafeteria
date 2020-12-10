@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Administracion</title>
+        <link rel="stylesheet" href="/static/css/estilo.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    </head>
+<body>
+    <header class="encavd">
+        <nav>
+            <a class="co"> Fecha : {{ fecha }}  </a>
+            <table>
+                <form action="/conf" method="POST">
+                    <input  type="hidden" name="idDia"  value="{{idDia }}">
+                    <button class="btn btn-secondary">
+                        Cerrar Caja
+                    </button>
+                </form>
+                <a href="/salir"class="btn btn-dark">Salir</a>
+            </table>
+        </nav>
+        
+    </header>
+   
+    <main>
+        <br>
+        <section class="contenedor sobre-nosotros">
+           
+            <div class="contenedor-sobre-nosotros"> 
+                <div class="contenido-textos">
+                    <h3>Añadir Ficha N°{{ficha }}</h3>
+                    <table >
+                        <form action="/fich2" method="POST">
+                        <tr>
+                        <td colspan="2">
+                            <input type="hidden" name="fich" value="{{ ficha }}">
+                            <input type="hidden" name="dia" value="{{ idDia }}">
+                            <input type="hidden" name="total" value="{{ total }}">
+                            <input  type="text" name="cliente"  placeholder="Apellido del Cliente" class="form-control" required>
+                        </td>
+                        <td rowspan=> <button type="submit" class="btn btn-success btn-block">
+                            Confirmar
+                        </button>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input  type="hidden" name="cliente"  class="form-control" >
+                            </td>
+                            <td> <a href="/borrar" class="btn btn-danger btn-block">
+                                Cancelar
+                            </a>
+                            </td>
+                            </tr>
+                        </form>
+                    </table> 
+                    <br></br>
+                    <h3>Total  {{ total }} Bs</h3> 
+                    <h5> {{ pedido }} </h5> 
+                </div>
+                <div class="contenido-textos">
+                    <h3 class="tit">Añadir Pedido</h3>
+                    <table >
+                        <form action="/fich" method="POST">
+                        <tr>
+                        <td colspan="2">
+                            <input type="hidden" name="ficha" value="{{ ficha }}">
+                            <input type="hidden" name="dia" value="{{ idDia }}">
+                            <input  type="number" name="cantidad"  placeholder="Cantidad" class="form-control" required>
+                            <input  type="number" name="idProducto"  placeholder="Id Producto" class="form-control" required>
+                            <button type="submit" class="btn btn-info btn-block" class="#form-control">
+                              Añadir
+                            </button>
+                        </td>
+                        <tr>
+                            <td> 
+                                {% with messages = get_flashed_messages()  %}
+                                {% if messages %}
+                                {% for message in messages %}
+                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                 {{ message }}
+                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  </div>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </td>
+                        </tr>
+                        </tr>
+                        </form>
+                    </table> 
+                    <br></br>
+                </div>
+                <br></br>
+                <div class="contenido-textos">
+                    <h3>Productos</h3> 
+                    <table >
+                        <tr>
+                            <td colspan="3" class="table table-success">Comida Rápida</td>
+                        </tr>
+                        {% for c in comida %}
+                        <tr>
+                            <td colspan="2">Id: {{c.0}} | &nbsp; {{ c.2}} Bs {{ c.1}}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="3" class="table table-warning">Bebidas</td>
+                        </tr>
+                        {% for c in bebida %}
+                        <tr>
+                            <td colspan="2">Id: {{c.0}} | &nbsp; {{ c.2}} Bs {{ c.1}}</td>             
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="3" class="table table-danger">Postres</td>
+                        </tr>
+                        {% for c in postre %}
+                        <tr>
+                            <td colspan="2">Id: {{c.0}} | &nbsp; {{ c.2}} Bs {{ c.1}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>   
+                </div>                
+            </div>
+            <div class="contenedor-sobre-nosotros"> 
+            
+            </div>
+        </section>
+        <br>
+    </main>
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <p>Administracion Fichas</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

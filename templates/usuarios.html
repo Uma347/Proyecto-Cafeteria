@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Administracion Usuarios</title>
+        <link rel="stylesheet" href="/static/css/estilo.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    </head>
+<body>
+    <header class="encavd">
+        <nav>
+            <a href="/dias"class="btn btn-dark">Ganancias Dias</a>
+            <a href="/salir"class="btn btn-dark">Salir</a>
+        </nav>
+       
+    </header>
+    <main>
+        <br>
+        <section class="contenedor sobre-nosotros">
+            <div class="contenedor-sobre-nosotros"> 
+                <div class="contenido-textos">
+                    <h3> Usuarios </h3> 
+                    <table>
+                        {% for c in usuarios %}
+                        <form action="/camr" method="POST">
+                            <input  type="hidden" name="ci"  value="{{ c.0}}">
+                            <input  type="hidden" name="categoria"  value="{{ c.2}}">
+                        <tr>
+                            <td class="table table-success">ID:&nbsp;&nbsp;{{ c.0}}</td>
+                            <td> </td>
+                            <td rowspan="3"> 
+                                <button type="submit" class="btn btn-outline-success">
+                                    Cambiar la contraseña
+                            </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Contraseña: &nbsp;&nbsp;{{ c.1}} </td> 
+                        </tr>
+                        <tr>
+                            <td>Categoria:&nbsp;&nbsp;{{ c.2}}</td>
+                        </tr>
+                    </form>
+                        {% endfor %}
+
+                        <tr>
+                            <td colspan="3">
+                                {% with messages = get_flashed_messages()  %}
+                                {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                     </button>
+                                     </div>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </td>
+                        </tr>
+                    </table>  
+                </div>
+                <img src="/static/img/user2.png" alt=""> 
+                
+            </div>
+        </section>
+        <br>
+        <br>
+
+    </main>
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <p>Administracion Usuarios</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
