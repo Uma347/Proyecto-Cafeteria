@@ -1,13 +1,13 @@
 from flask import Flask, flash, render_template,request, url_for, redirect, session
 from flask_mysqldb import MySQL
-
+import os
 app=Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost' 
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1Jptyvdtnma'
-app.config['MYSQL_DB'] = 'Cafeteria'
-app.secret_key = 'contraseña'
+app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST') # 'localhost' 
+app.config['MYSQL_USER'] = os.getenv('MYSQL_USER') #'root'
+app.config['MYSQL_PASSWORD'] =  os.getenv('MYSQL_PASSWORD') #'1Jptyvdtnma'
+app.config['MYSQL_DB'] = os.getenv('MYSQL_DB') #'Cafeteria'
+app.secret_key = os.getenv('SECRET_KEY')#'contraseña'
 
 mysql = MySQL(app)
 
@@ -456,4 +456,4 @@ def borr(idProducto):
         return render_template('ingresa.html')
 
 if __name__=='__main__':
-    app.run(port=3000, debug=True)
+    app.run(port=3000, debug=True, host='0.0.0.0')
